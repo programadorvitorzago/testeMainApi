@@ -7,16 +7,29 @@ Com relação à questão de segurança, sabemos que não é correto deixar dado
 
 ## Execução
 Para executar a API utilizar o comando Docker para carregar a imagem do DockerHub.
-
+```
+docker pull programadorvitorzago/main-api:latest
+```
 
 Utilize o comando para iniciar a execução configurando a porta desejada. No exemplo a porta no host está como 8081
-Para testar a aplicação utilize os seguintes comandos com a ferramente CURL (Lembrando que WebServer  TomCat é case sensitive)
+```
+docker run -d -p 8081:8080 --name main-api-container programadorvitorzago/main-api
+```
 
-## Para testar a API.
+## Para utilizar a API.
+Existem os seguintes métodos (path):
+ - **/mainAPI/IsAlive**
+   - Retorna "OK" para qualquer requisiçao. Útil para verificar se a API está on-line.
+ - **/mainAPI/validacao?password=X&whyNot=Y**
+   - Parâmetro 'password': Obrigatório: senha a ser testada.
+   - Parâmetro 'whyNot': Define se é retornado um texto com o porquê de não ter sido validado.
+    
+Exemplos:
+Verificar se a API está on-line:
 ```
 curl -X POST "http://localhost:8081/mainAPI/IsAlive"
 ```
-Retorna "OK" para qualquer chamada.
+   - Retorna "OK" para qualquer chamada.
 
 Para testar a senha "1234567890!aA";
 ```
